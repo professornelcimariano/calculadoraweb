@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projeto Calculadora Web</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: #fff;
+    }
+
+    .calculator {
+      width: 300px;
+      background-color: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+    }
+
+    .title-bar {
+      background-color: #2e2e2e;
+      padding: 10px;
+      text-align: center;
+      font-size: 1.2em;
+    }
+
+    #display {
+      width: calc(100% - 30px);
+      height: 60px;
+      font-size: 1.5em;
+      text-align: right;
+      padding: 15px;
+      border: none;
+      outline: none;
+      background-color: #121212;
+      color: #fff;
+      margin: 0 15px;
+    }
+
+    button {
+      width: 25%;
+      height: 60px;
+      font-size: 1.5em;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      background-color: #2e2e2e;
+      color: #fff;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    button.operator {
+      background-color: #ff9500;
+    }
+
+    button.equal {
+      background-color: #4caf50;
+    }
+
+    button.clear {
+      background-color: #e74c3c;
+    }
+
+    button:hover {
+      background-color: #444;
+    }
+
+    .row {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+
+<div class="calculator">
+  <div class="title-bar">
+    Projeto Calculadora Web
+  </div>
+  <input type="text" id="display" readonly>
+
+  <div class="row">
+    <button onclick="appendToDisplay('7')">7</button>
+    <button onclick="appendToDisplay('8')">8</button>
+    <button onclick="appendToDisplay('9')">9</button>
+    <button class="operator" onclick="appendToDisplay('/')">÷</button>
+  </div>
+
+  <div class="row">
+    <button onclick="appendToDisplay('4')">4</button>
+    <button onclick="appendToDisplay('5')">5</button>
+    <button onclick="appendToDisplay('6')">6</button>
+    <button class="operator" onclick="appendToDisplay('*')">×</button>
+  </div>
+
+  <div class="row">
+    <button onclick="appendToDisplay('1')">1</button>
+    <button onclick="appendToDisplay('2')">2</button>
+    <button onclick="appendToDisplay('3')">3</button>
+    <button class="operator" onclick="appendToDisplay('-')">−</button>
+  </div>
+
+  <div class="row">
+    <button onclick="appendToDisplay('0')">0</button>
+    <button onclick="appendToDisplay('.')">.</button>
+    <button class="equal" onclick="calculate()">=</button>
+    <button class="operator" onclick="appendToDisplay('+')">+</button>
+  </div>
+
+  <div class="row">
+    <button class="clear" onclick="clearDisplay()">C</button>
+  </div>
+</div>
+
+<script>
+  function appendToDisplay(value) {
+    document.getElementById('display').value += value;
+  }
+
+  function clearDisplay() {
+    document.getElementById('display').value = '';
+  }
+
+  function calculate() {
+    try {
+      document.getElementById('display').value = eval(document.getElementById('display').value);
+    } catch (error) {
+      document.getElementById('display').value = 'Error';
+    }
+  }
+</script>
+
+</body>
+</html>
